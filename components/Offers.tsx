@@ -1,10 +1,27 @@
-
 import React from 'react';
 
 export const Offers: React.FC = () => {
+  // --- AQUI ESTÁ A MÁGICA (Função Corrigida) ---
   const handlePurchase = (url: string) => {
-    window.open(url, '_blank');
+    // 1. Pega os parâmetros (UTMs) que estão na URL do navegador agora
+    const currentParams = window.location.search;
+    
+    let finalUrl = url;
+
+    // 2. Se existirem parâmetros, adiciona ao link da Cakto
+    if (currentParams) {
+      // Verifica se o link da Cakto já tem '?' para usar o separador certo (& ou ?)
+      if (finalUrl.includes('?')) {
+        finalUrl += '&' + currentParams.substring(1);
+      } else {
+        finalUrl += currentParams;
+      }
+    }
+
+    // 3. Abre o link final com as UTMs incluídas
+    window.open(finalUrl, '_blank');
   };
+  // ------------------------------------------------
 
   return (
     <section id="offers" className="bg-white py-24 px-6">
