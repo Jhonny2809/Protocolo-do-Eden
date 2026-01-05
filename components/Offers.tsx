@@ -1,27 +1,10 @@
+
 import React from 'react';
 
 export const Offers: React.FC = () => {
-  // --- AQUI ESTÁ A MÁGICA (Função Corrigida) ---
   const handlePurchase = (url: string) => {
-    // 1. Pega os parâmetros (UTMs) que estão na URL do navegador agora
-    const currentParams = window.location.search;
-    
-    let finalUrl = url;
-
-    // 2. Se existirem parâmetros, adiciona ao link da Cakto
-    if (currentParams) {
-      // Verifica se o link da Cakto já tem '?' para usar o separador certo (& ou ?)
-      if (finalUrl.includes('?')) {
-        finalUrl += '&' + currentParams.substring(1);
-      } else {
-        finalUrl += currentParams;
-      }
-    }
-
-    // 3. Abre o link final com as UTMs incluídas
-    window.open(finalUrl, '_blank');
+    window.open(url, '_blank');
   };
-  // ------------------------------------------------
 
   return (
     <section id="offers" className="bg-white py-24 px-6">
@@ -39,7 +22,7 @@ export const Offers: React.FC = () => {
             <h3 className="text-xl font-bold tracking-widest text-gray-500 uppercase mb-2">Pacote Degustação</h3>
             <p className="text-gray-400 font-light mb-4">Para Iniciantes</p>
             <div className="text-gray-400 line-through text-lg">R$ 29,90</div>
-            <div className="text-3xl font-bold text-gray-700">R$ 17,90</div>
+            <div className="text-3xl font-bold text-gray-700">R$ 10,90</div>
           </div>
           
           <ul className="space-y-4 mb-10 flex-grow text-left">
@@ -83,7 +66,7 @@ export const Offers: React.FC = () => {
             <h3 className="text-2xl font-bold tracking-widest text-[#2E5C38] uppercase mb-2">O Treinamento Completo</h3>
             <p className="text-[#2E5C38]/70 font-light mb-4">A Sabedoria Terapêutica na Sua Cozinha</p>
             <div className="text-[#2E5C38]/40 line-through text-lg">R$ 97,90</div>
-            <div className="text-4xl font-bold text-[#2E5C38]">R$ 37,90</div>
+            <div className="text-4xl font-bold text-[#2E5C38]">R$ 24,90</div>
             <p className="text-[#2E5C38]/60 text-sm mt-1">(Pagamento Único)</p>
           </div>
           
@@ -117,7 +100,7 @@ export const Offers: React.FC = () => {
             QUERO O TREINAMENTO COMPLETO
           </button>
           <p className="text-center text-xs text-gray-500 mt-4 italic">
-            Menos de R$ 0,15 centavos por treinamento terapêutico.
+            Menos de R$ 0,85 centavos por treinamento terapêutico.
           </p>
         </div>
       </div>
