@@ -2,8 +2,30 @@
 import React from 'react';
 
 export const Offers: React.FC = () => {
-  const handlePurchase = (url: string) => {
-    window.open(url, '_blank');
+  /**
+   * Função para processar a compra e garantir que os parâmetros de URL (UTMs) 
+   * sejam repassados para a página de checkout.
+   */
+  const handlePurchase = (baseUrl: string) => {
+    // Captura os parâmetros atuais da URL (ex: ?utm_source=facebook&utm_medium=cpc...)
+    const currentSearchParams = window.location.search;
+    
+    let finalUrl = baseUrl;
+
+    if (currentSearchParams) {
+      // Remove o '?' inicial se existir para evitar duplicação
+      const cleanParams = currentSearchParams.startsWith('?') 
+        ? currentSearchParams.substring(1) 
+        : currentSearchParams;
+      
+      // Verifica se a URL base já contém parâmetros
+      const separator = baseUrl.includes('?') ? '&' : '?';
+      
+      finalUrl = `${baseUrl}${separator}${cleanParams}`;
+    }
+
+    // Abre a URL final em uma nova aba
+    window.open(finalUrl, '_blank');
   };
 
   return (
