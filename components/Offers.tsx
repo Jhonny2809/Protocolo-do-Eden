@@ -1,12 +1,14 @@
-
 import React from 'react';
 
 export const Offers: React.FC = () => {
   /**
    * Função para processar a compra e garantir que os parâmetros de URL (UTMs) 
    * sejam repassados para a página de checkout.
+   * Adicionado e.stopPropagation() para evitar erros de referência circular com pixels de rastreamento.
    */
-  const handlePurchase = (baseUrl: string) => {
+  const handlePurchase = (e: React.MouseEvent, baseUrl: string) => {
+    e.stopPropagation();
+    
     // Captura os parâmetros atuais da URL (ex: ?utm_source=facebook&utm_medium=cpc...)
     const currentSearchParams = window.location.search;
     
@@ -71,7 +73,7 @@ export const Offers: React.FC = () => {
           </ul>
           
           <button 
-            onClick={() => handlePurchase('https://pay.cakto.com.br/ffnny9p')}
+            onClick={(e) => handlePurchase(e, 'https://pay.cakto.com.br/ffnny9p')}
             className="w-full bg-gray-700 hover:bg-gray-800 text-white py-4 rounded-xl font-bold transition-all shadow-md"
           >
             QUERO OS 10 TREINAMENTOS BÁSICOS
@@ -116,7 +118,7 @@ export const Offers: React.FC = () => {
           </ul>
           
           <button 
-            onClick={() => handlePurchase('https://pay.cakto.com.br/yhbzejf_699133')}
+            onClick={(e) => handlePurchase(e, 'https://pay.cakto.com.br/yhbzejf_699133')}
             className="w-full bg-[#2E5C38] hover:bg-[#1f3f26] text-white py-5 rounded-xl text-xl font-bold shadow-xl animate-pulse-soft transition-all"
           >
             QUERO O TREINAMENTO COMPLETO

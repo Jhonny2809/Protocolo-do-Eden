@@ -29,7 +29,10 @@ export const ProductMockup: React.FC = () => {
     setIsLightboxOpen(true);
   };
 
-  const closeLightbox = () => setIsLightboxOpen(false);
+  const closeLightbox = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setIsLightboxOpen(false);
+  };
 
   const nextLightboxImage = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -39,6 +42,11 @@ export const ProductMockup: React.FC = () => {
   const prevLightboxImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     setLightboxIndex((prev) => (prev - 1 + internalImages.length) % internalImages.length);
+  };
+
+  const handleDotClick = (e: React.MouseEvent, index: number) => {
+    e.stopPropagation();
+    setCurrentIndex(index);
   };
 
   return (
@@ -98,9 +106,10 @@ export const ProductMockup: React.FC = () => {
               {internalImages.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
+                  onClick={(e) => handleDotClick(e, idx)}
                   className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-[#2E5C38] w-4' : 'bg-gray-200'}`}
                   aria-label={`Ir para imagem ${idx + 1}`}
+                  type="button"
                 />
               ))}
             </div>
@@ -115,11 +124,12 @@ export const ProductMockup: React.FC = () => {
       {isLightboxOpen && (
         <div 
           className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-10 animate-in fade-in duration-300"
-          onClick={closeLightbox}
+          onClick={(e) => closeLightbox(e)}
         >
           <button 
             className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-[110]"
-            onClick={closeLightbox}
+            onClick={(e) => closeLightbox(e)}
+            type="button"
           >
             <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
@@ -127,6 +137,7 @@ export const ProductMockup: React.FC = () => {
           <button 
             className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors hidden sm:block"
             onClick={prevLightboxImage}
+            type="button"
           >
             <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
           </button>
@@ -141,6 +152,7 @@ export const ProductMockup: React.FC = () => {
           <button 
             className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors hidden sm:block"
             onClick={nextLightboxImage}
+            type="button"
           >
             <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
           </button>

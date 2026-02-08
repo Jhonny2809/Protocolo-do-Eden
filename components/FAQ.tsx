@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const faqs = [
@@ -31,7 +30,10 @@ export const FAQ: React.FC = () => {
           {faqs.map((faq, idx) => (
             <div key={idx} className="border-b border-gray-100 last:border-0 pb-4">
               <button 
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenIndex(openIndex === idx ? null : idx);
+                }}
                 className="w-full text-left py-4 flex justify-between items-center group"
               >
                 <span className="text-xl font-semibold text-gray-800 group-hover:text-[#2E5C38] transition-colors">{faq.q}</span>

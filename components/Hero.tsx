@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export const Hero: React.FC = () => {
@@ -32,7 +31,10 @@ export const Hero: React.FC = () => {
           Não é apenas comida. É uma reforma. Desinflame seu organismo, clareie sua mente e blinde sua saúde usando os princípios que Ellen G. White escreveu há mais de 100 anos — agora confirmados pela ciência.
         </p>
         <button 
-          onClick={() => document.getElementById('offers')?.scrollIntoView({ behavior: 'smooth' })}
+          onClick={(e) => {
+            e.stopPropagation();
+            document.getElementById('offers')?.scrollIntoView({ behavior: 'smooth' });
+          }}
           className="bg-[#D4AF37] hover:bg-[#c19e32] text-white px-8 py-4 rounded-full text-lg md:text-xl font-semibold transition-all transform hover:scale-105 shadow-2xl animate-pulse-soft"
         >
           QUERO CONHECER O PROTOCOLO
