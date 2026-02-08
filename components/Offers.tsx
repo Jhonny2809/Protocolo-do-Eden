@@ -88,7 +88,7 @@ export const Offers: React.FC = () => {
             <h3 className="text-2xl font-bold tracking-widest text-[#2E5C38] uppercase mb-2">O Treinamento Completo</h3>
             <p className="text-[#2E5C38]/70 font-light mb-4">A Sabedoria Terapêutica na Sua Cozinha</p>
             <div className="text-[#2E5C38]/40 line-through text-lg">R$ 97,90</div>
-            <div className="text-4xl font-bold text-[#2E5C38]">R$ 24,90</div>
+            <div className="text-4xl font-bold text-[#2E5C38]">R$ 18,90</div>
             <p className="text-[#2E5C38]/60 text-sm mt-1">(Pagamento Único)</p>
           </div>
           
@@ -122,7 +122,7 @@ export const Offers: React.FC = () => {
             QUERO O TREINAMENTO COMPLETO
           </button>
           <p className="text-center text-xs text-gray-500 mt-4 italic">
-            Menos de R$ 0,85 centavos por treinamento terapêutico.
+            Menos de R$ 0,65 centavos por treinamento terapêutico.
           </p>
         </div>
       </div>
