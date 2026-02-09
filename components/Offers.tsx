@@ -39,7 +39,7 @@ export const Offers: React.FC = () => {
         </p>
       </div>
       
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-20">
         {/* Package 1: PACOTE DEGUSTAÇÃO */}
         <div className="bg-white border-2 border-gray-100 p-8 rounded-3xl shadow-sm flex flex-col h-full opacity-90 transition-all hover:border-gray-200">
           <div className="text-center mb-8">
@@ -88,7 +88,7 @@ export const Offers: React.FC = () => {
           
           <div className="text-center mt-6 mb-8">
             <h3 className="text-2xl font-bold tracking-widest text-[#2E5C38] uppercase mb-2">O Treinamento Completo</h3>
-            <p className="text-[#2E5C38]/70 font-light mb-4">A Sabedoria Terapêutica na Sua Cozinha</p>
+            <p className="text-[#2E5C38]/70 font-light mb-4">Ideal para quem deseja aplicar os princípios com clareza, segurança e simplicidade no dia a dia.</p>
             <div className="text-[#2E5C38]/40 line-through text-lg">R$ 97,90</div>
             <div className="text-4xl font-bold text-[#2E5C38]">R$ 18,90</div>
             <p className="text-[#2E5C38]/60 text-sm mt-1">(Pagamento Único)</p>
@@ -126,6 +126,68 @@ export const Offers: React.FC = () => {
           <p className="text-center text-xs text-gray-500 mt-4 italic">
             Menos de R$ 0,63 centavos por treinamento terapêutico.
           </p>
+        </div>
+      </div>
+
+      {/* NOVA SEÇÃO: Detalhamento do Treinamento Completo */}
+      <div className="max-w-4xl mx-auto pt-12 border-t border-gray-100">
+        <h3 className="text-3xl text-[#2E5C38] font-bold text-center mb-6">
+          O Que Você Recebe no Treinamento Completo
+        </h3>
+        <p className="text-gray-600 text-center text-lg max-w-2xl mx-auto mb-12 font-light">
+          O Treinamento Completo foi pensado para quem não quer apenas entender os princípios,
+          mas aplicá-los de forma simples e segura no dia a dia, respeitando sua rotina e sua realidade.
+        </p>
+
+        <div className="space-y-8 max-w-3xl mx-auto">
+          <div className="flex gap-4">
+            <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg text-[#2E5C38]">Material principal com os princípios alimentares ensinados por Ellen G. White</h4>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg text-[#2E5C38]">Guia Prático de Aplicação</h4>
+              <p className="text-gray-600 font-light mt-1">Um passo a passo simples para saber por onde começar, o que priorizar e como adaptar os princípios à rotina moderna.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg text-[#2E5C38]">Plano de 7 Dias de Retorno à Simplicidade</h4>
+              <p className="text-gray-600 font-light mt-1">Um plano leve, sem restrições agressivas, para colocar os princípios em prática desde a primeira semana.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg text-[#2E5C38]">Checklist de Cozinha e Despensa Natural</h4>
+              <p className="text-gray-600 font-light mt-1">Uma lista clara do que manter em casa, do que reduzir aos poucos e de substituições simples no dia a dia.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg text-[#2E5C38]">Atualizações Futuras Incluídas</h4>
+              <p className="text-gray-600 font-light mt-1">Sempre que novos materiais forem adicionados ao treinamento, o aluno recebe automaticamente, sem custo adicional.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
