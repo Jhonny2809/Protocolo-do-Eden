@@ -131,34 +131,33 @@ export const Offers: React.FC = () => {
 
       {/* NOVA SEÇÃO: Detalhamento do Treinamento Completo */}
       <div className="max-w-4xl mx-auto pt-12 border-t border-gray-100">
-        <h3 className="text-3xl text-[#2E5C38] font-bold text-center mb-6">
-          O Que Você Recebe no Treinamento Completo
-        </h3>
-        <p className="text-gray-600 text-center text-lg max-w-2xl mx-auto mb-12 font-light">
-          O Treinamento Completo foi pensado para quem não quer apenas entender os princípios,
-          mas aplicá-los de forma simples e segura no dia a dia, respeitando sua rotina e sua realidade.
-        </p>
+        <div className="text-center mb-12">
+          <h3 className="text-3xl text-[#2E5C38] font-bold mb-2">
+            O Que Você Recebe no Treinamento Completo
+          </h3>
+          <p className="text-[#2E5C38] font-medium mb-6">
+            Disponível exclusivamente no Treinamento Completo.
+          </p>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto font-light">
+            O Treinamento Completo é para quem não quer apenas conhecer os princípios,
+            mas saber exatamente como aplicá-los no dia a dia, com clareza, orientação
+            e segurança, mesmo em meio à rotina moderna.
+          </p>
+        </div>
 
         <div className="space-y-8 max-w-3xl mx-auto">
-          <div className="flex gap-4">
-            <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-            </div>
-            <div>
-              <h4 className="font-semibold text-lg text-[#2E5C38]">Material principal com os princípios alimentares ensinados por Ellen G. White</h4>
-            </div>
-          </div>
-
+          {/* 1. Guia Prático de Aplicação */}
           <div className="flex gap-4">
             <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
             </div>
             <div>
               <h4 className="font-semibold text-lg text-[#2E5C38]">Guia Prático de Aplicação</h4>
-              <p className="text-gray-600 font-light mt-1">Um passo a passo simples para saber por onde começar, o que priorizar e como adaptar os princípios à rotina moderna.</p>
+              <p className="text-gray-600 font-light mt-1">Um passo a passo simples para saber por onde começar, o que priorizar e como adaptar os princípios à rotina atual.</p>
             </div>
           </div>
 
+          {/* 2. Plano de 7 Dias */}
           <div className="flex gap-4">
             <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
@@ -169,6 +168,7 @@ export const Offers: React.FC = () => {
             </div>
           </div>
 
+          {/* 3. Checklist de Cozinha */}
           <div className="flex gap-4">
             <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
@@ -179,6 +179,17 @@ export const Offers: React.FC = () => {
             </div>
           </div>
 
+          {/* 4. Material Principal */}
+          <div className="flex gap-4">
+            <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg text-[#2E5C38]">Material principal com os princípios alimentares ensinados por Ellen G. White</h4>
+            </div>
+          </div>
+
+          {/* 5. Atualizações Futuras */}
           <div className="flex gap-4">
             <div className="flex-shrink-0 mt-1 text-[#2E5C38]">
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
@@ -189,6 +200,10 @@ export const Offers: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <p className="text-center text-gray-500 mt-12 italic font-light">
+          Essa opção é indicada para quem deseja seguir os princípios com orientação prática, sem precisar descobrir tudo sozinho.
+        </p>
       </div>
     </section>
   );
