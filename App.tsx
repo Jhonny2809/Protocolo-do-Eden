@@ -2,6 +2,7 @@
 import React from 'react';
 import { Hero } from './components/Hero';
 import { PainSection } from './components/PainSection';
+import { VideoSection } from './components/VideoSection';
 import { AuthoritySection } from './components/AuthoritySection';
 import { RecipeGallery } from './components/RecipeGallery';
 import { TherapeuticDifference } from './components/TherapeuticDifference';
@@ -17,6 +18,7 @@ const App: React.FC = () => {
     <div className="min-h-screen selection:bg-[#D4AF37] selection:text-white overflow-x-hidden">
       <Hero />
       <PainSection />
+      <VideoSection />
       <AuthoritySection />
       <RecipeGallery />
       <TherapeuticDifference />
