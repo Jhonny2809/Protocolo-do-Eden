@@ -73,7 +73,7 @@ export const Offers: React.FC = () => {
           </ul>
           
           <button 
-            onClick={(e) => handlePurchase(e, 'https://pay.cakto.com.br/ffnny9p')}
+            onClick={(e) => handlePurchase(e, 'https://pay.cakto.com.br/39bv9i9')}
             className="w-full bg-gray-700 hover:bg-gray-800 text-white py-4 rounded-xl font-bold transition-all shadow-md"
           >
             QUERO OS 10 TREINAMENTOS BÁSICOS
@@ -114,6 +114,10 @@ export const Offers: React.FC = () => {
             <li className="flex items-start gap-3">
               <span className="mt-1">✅</span>
               <span><strong>Qualidade HD:</strong> Material pronto para impressão ou leitura digital.</span>
+            </li>
+            <li className="flex items-start gap-3 bg-[#D4AF37]/10 p-2 rounded-lg -mx-2">
+              <span className="mt-1">🎁</span>
+              <span className="text-[#2E5C38]"><strong>Bônus Exclusivo:</strong> 100 Receitas de Remédios Naturais.</span>
             </li>
           </ul>
           
