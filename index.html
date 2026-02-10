@@ -15,8 +15,13 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
+    
+    // Gera um ID único para o evento (Timestamp + Random)
+    const eventId = 'id-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+    
     fbq('init', '25392125703781515');
-    fbq('track', 'PageView');
+    // Envia o PageView com o eventID para desduplicação
+    fbq('track', 'PageView', {}, { eventID: eventId });
     </script>
     <!-- End Meta Pixel Code -->
     
@@ -59,7 +64,7 @@
 </script>
 </head>
 <body>
-    <!-- Meta Pixel Code (Noscript) -->
+    <!-- Meta Pixel Code (Noscript) - Movido para o body para evitar erros de build -->
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=25392125703781515&ev=PageView&noscript=1"
     /></noscript>
