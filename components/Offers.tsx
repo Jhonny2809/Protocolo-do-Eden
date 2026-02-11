@@ -1,37 +1,74 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const Offers: React.FC = () => {
+  const [showUpsell, setShowUpsell] = useState(false);
+
   /**
    * Função para processar a compra e garantir que os parâmetros de URL (UTMs) 
    * sejam repassados para a página de checkout.
-   * Adicionado e.stopPropagation() para evitar erros de referência circular com pixels de rastreamento.
    */
-  const handlePurchase = (e: React.MouseEvent, baseUrl: string) => {
-    e.stopPropagation();
-    
-    // Captura os parâmetros atuais da URL (ex: ?utm_source=facebook&utm_medium=cpc...)
-    const currentSearchParams = window.location.search;
-    
-    let finalUrl = baseUrl;
-
-    if (currentSearchParams) {
-      // Remove o '?' inicial se existir para evitar duplicação
-      const cleanParams = currentSearchParams.startsWith('?') 
-        ? currentSearchParams.substring(1) 
-        : currentSearchParams;
+  const handlePurchase = (baseUrl: string) => {
+    try {
+      // Cria um objeto URL a partir da URL base (destino)
+      // Isso garante que a manipulação de query strings seja feita corretamente
+      const urlObj = new URL(baseUrl);
       
-      // Verifica se a URL base já contém parâmetros
-      const separator = baseUrl.includes('?') ? '&' : '?';
+      // Captura os parâmetros atuais da janela (ex: ?utm_source=facebook&utm_medium=cpc...)
+      const currentParams = new URLSearchParams(window.location.search);
       
-      finalUrl = `${baseUrl}${separator}${cleanParams}`;
+      // Itera sobre os parâmetros atuais e os adiciona à URL de destino
+      currentParams.forEach((value, key) => {
+        // Adiciona ou atualiza o parâmetro na URL de destino
+        // Isso garante que os UTMs da campanha atual sejam preservados
+        urlObj.searchParams.set(key, value);
+      });
+      
+      // Abre a URL final em uma nova aba
+      window.open(urlObj.toString(), '_blank');
+      
+    } catch (error) {
+      console.error("Erro ao processar URL:", error);
+      // Fallback simples caso algo falhe na API de URL (segurança)
+      const currentSearchParams = window.location.search;
+      let finalUrl = baseUrl;
+      
+      if (currentSearchParams) {
+        const cleanParams = currentSearchParams.startsWith('?') 
+          ? currentSearchParams.substring(1) 
+          : currentSearchParams;
+        const separator = baseUrl.includes('?') ? '&' : '?';
+        finalUrl = `${baseUrl}${separator}${cleanParams}`;
+      }
+      
+      window.open(finalUrl, '_blank');
     }
+  };
 
-    // Abre a URL final em uma nova aba
-    window.open(finalUrl, '_blank');
+  const handleBasicClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowUpsell(true);
+  };
+
+  const handleDeclineUpsell = () => {
+    setShowUpsell(false);
+    // Redireciona para a oferta original de 10,90
+    handlePurchase('https://pay.cakto.com.br/39bv9i9');
+  };
+
+  const handleAcceptUpsell = () => {
+    setShowUpsell(false);
+    // Redireciona para a nova oferta de 24,90
+    handlePurchase('https://pay.cakto.com.br/zsbfqhz');
+  };
+
+  // Direct purchase for the standard complete button (R$ 34,90)
+  const handleCompleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    handlePurchase('https://pay.cakto.com.br/yhbzejf_699133');
   };
 
   return (
-    <section id="offers" className="bg-white py-24 px-6">
+    <section id="offers" className="bg-white py-24 px-6 relative">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-4xl text-[#2E5C38] font-bold mb-4">Escolha Como Começar Sua Reforma</h2>
         <p className="text-gray-500 font-light max-w-2xl mx-auto">
@@ -40,11 +77,12 @@ export const Offers: React.FC = () => {
       </div>
       
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-20">
-        {/* Package 1: PACOTE DEGUSTAÇÃO */}
+        {/* Package 1: PLANO ESSENCIAL */}
         <div className="bg-white border-2 border-gray-100 p-8 rounded-3xl shadow-sm flex flex-col h-full opacity-90 transition-all hover:border-gray-200">
           <div className="text-center mb-8">
-            <h3 className="text-xl font-bold tracking-widest text-gray-500 uppercase mb-2">Pacote Degustação</h3>
-            <p className="text-gray-400 font-light mb-4">Para Iniciantes</p>
+            <h3 className="text-xl font-bold tracking-widest text-gray-500 uppercase mb-2">Plano Essencial</h3>
+            <p className="text-gray-400 font-light mb-1">Para Iniciantes</p>
+            <p className="text-xs text-gray-400 mb-4">Indicado para quem deseja começar de forma simples.</p>
             <div className="text-gray-400 line-through text-lg">R$ 29,90</div>
             <div className="text-3xl font-bold text-gray-700">R$ 10,90</div>
           </div>
@@ -52,31 +90,53 @@ export const Offers: React.FC = () => {
           <ul className="space-y-4 mb-10 flex-grow text-left">
             <li className="flex items-center gap-3">
               <span className="text-green-500">✅</span>
-              <span className="text-gray-600 font-medium">Os 10 Treinamentos Essenciais</span>
+              <span className="text-gray-600 font-medium">10 Treinamentos Fundamentais</span>
             </li>
             <li className="flex items-center gap-3">
               <span className="text-green-500">✅</span>
-              <span className="text-gray-600">O kit básico para começar agora</span>
+              <span className="text-gray-600">Guia prático em PDF</span>
             </li>
             <li className="flex items-center gap-3">
               <span className="text-green-500">✅</span>
-              <span className="text-gray-600">Guia de Preparo em PDF</span>
+              <span className="text-gray-600">Introdução organizada aos princípios naturais</span>
             </li>
-            <li className="flex items-center gap-3 opacity-30">
-              <span className="text-red-400">❌</span>
-              <span className="text-gray-400">Sem Treinamento Terapêutico Completo</span>
+            <li className="flex items-center gap-3">
+              <span className="text-green-500">✅</span>
+              <span className="text-gray-600">Material pronto para leitura digital</span>
             </li>
-            <li className="flex items-center gap-3 opacity-30">
+            <li className="flex items-center gap-3">
+              <span className="text-green-500">✅</span>
+              <span className="text-gray-600">Acesso imediato por e-mail</span>
+            </li>
+            
+            {/* Excluded items */}
+            <li className="flex items-center gap-3 opacity-40">
               <span className="text-red-400">❌</span>
-              <span className="text-gray-400">Sem Atualizações Vitalícias</span>
+              <span className="text-gray-400">Treinamentos Terapêuticos completos (30 módulos)</span>
+            </li>
+            <li className="flex items-center gap-3 opacity-40">
+              <span className="text-red-400">❌</span>
+              <span className="text-gray-400">Manual de Substituições</span>
+            </li>
+            <li className="flex items-center gap-3 opacity-40">
+              <span className="text-red-400">❌</span>
+              <span className="text-gray-400">Atualizações futuras</span>
+            </li>
+            <li className="flex items-center gap-3 opacity-40">
+              <span className="text-red-400">❌</span>
+              <span className="text-gray-400">Acesso Vitalício</span>
+            </li>
+            <li className="flex items-center gap-3 opacity-40">
+              <span className="text-red-400">❌</span>
+              <span className="text-gray-400">Coleção de receitas organizadas por necessidade</span>
             </li>
           </ul>
           
           <button 
-            onClick={(e) => handlePurchase(e, 'https://pay.cakto.com.br/39bv9i9')}
-            className="w-full bg-gray-700 hover:bg-gray-800 text-white py-4 rounded-xl font-bold transition-all shadow-md"
+            onClick={handleBasicClick}
+            className="w-full bg-white border-2 border-gray-200 hover:bg-gray-50 text-gray-500 py-4 rounded-xl font-bold transition-all shadow-sm"
           >
-            QUERO OS 10 TREINAMENTOS BÁSICOS
+            QUERO O PLANO BÁSICO
           </button>
         </div>
 
@@ -88,9 +148,10 @@ export const Offers: React.FC = () => {
           
           <div className="text-center mt-6 mb-8">
             <h3 className="text-2xl font-bold tracking-widest text-[#2E5C38] uppercase mb-2">O Treinamento Completo</h3>
-            <p className="text-[#2E5C38]/70 font-light mb-4">Ideal para quem deseja aplicar os princípios com clareza, segurança e simplicidade no dia a dia.</p>
+            <p className="text-[#2E5C38]/70 font-light mb-1">Para quem deseja aplicar com estrutura e profundidade.</p>
+            <p className="text-[#2E5C38] font-medium mb-4 text-sm">A opção ideal para quem deseja aplicar os princípios sem limitações.</p>
             <div className="text-[#2E5C38]/40 line-through text-lg">R$ 97,90</div>
-            <div className="text-4xl font-bold text-[#2E5C38]">R$ 18,90</div>
+            <div className="text-4xl font-bold text-[#2E5C38]">R$ 34,90</div>
             <p className="text-[#2E5C38]/60 text-sm mt-1">(Pagamento Único)</p>
           </div>
           
@@ -119,16 +180,31 @@ export const Offers: React.FC = () => {
               <span className="mt-1">🎁</span>
               <span className="text-[#2E5C38]"><strong>Bônus Exclusivo:</strong> 100 Receitas de Remédios Naturais.</span>
             </li>
+            <li className="flex items-start gap-3 pt-2">
+              <span className="mt-1">✅</span>
+              <div>
+                <strong>Coleção de Orientações Naturais Organizadas por Necessidade:</strong>
+                <p className="text-sm mt-1 mb-2 text-gray-600 leading-snug">
+                  Materiais estruturados com receitas e orientações tradicionalmente associadas ao cuidado natural do corpo, incluindo temas como:
+                </p>
+                <ul className="list-disc pl-4 text-sm text-[#2E5C38] space-y-1 font-medium opacity-90">
+                  <li>Equilíbrio emocional</li>
+                  <li>Controle de peso</li>
+                  <li>Equilíbrio da glicemia</li>
+                  <li>Saúde cardiovascular</li>
+                </ul>
+              </div>
+            </li>
           </ul>
           
           <button 
-            onClick={(e) => handlePurchase(e, 'https://pay.cakto.com.br/yhbzejf_699133')}
+            onClick={handleCompleteClick}
             className="w-full bg-[#2E5C38] hover:bg-[#1f3f26] text-white py-5 rounded-xl text-xl font-bold shadow-xl animate-pulse-soft transition-all"
           >
             QUERO O TREINAMENTO COMPLETO
           </button>
-          <p className="text-center text-xs text-gray-500 mt-4 italic">
-            Menos de R$ 0,63 centavos por treinamento terapêutico.
+          <p className="text-center text-sm text-[#2E5C38] mt-4 font-semibold">
+            Por apenas R$ 24,00 a mais, você desbloqueia o método completo.
           </p>
         </div>
       </div>
@@ -209,6 +285,66 @@ export const Offers: React.FC = () => {
           Essa opção é indicada para quem deseja seguir os princípios com orientação prática, sem precisar descobrir tudo sozinho.
         </p>
       </div>
+
+      {/* UPSELL POPUP: ESTILO RACIONAL E ELEGANTE */}
+      {showUpsell && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-[#D4AF37]/30 p-8 relative animate-in zoom-in-95 duration-300">
+            
+            {/* Header */}
+            <div className="text-center mb-6">
+              <h3 className="text-2xl text-[#2E5C38] font-bold font-serif mb-2">
+                Antes de continuar...
+              </h3>
+              <p className="text-gray-600 font-medium">
+                Você realmente deseja apenas o acesso inicial?
+              </p>
+            </div>
+
+            {/* Body/Comparison */}
+            <div className="mb-6 bg-[#F9F7F2] p-6 rounded-xl border border-gray-100">
+               <p className="text-gray-700 text-sm mb-4 leading-relaxed">
+                 Por apenas <span className="font-bold text-[#2E5C38]">R$ 14,00 a mais</span>, você desbloqueia o Treinamento Completo com:
+               </p>
+               <ul className="space-y-2 text-sm text-gray-600">
+                  <li className="flex gap-2 items-center"><span className="text-green-600">✔</span> 30 Treinamentos Terapêuticos</li>
+                  <li className="flex gap-2 items-center"><span className="text-green-600">✔</span> Manual de Substituições</li>
+                  <li className="flex gap-2 items-center"><span className="text-green-600">✔</span> Atualizações futuras</li>
+                  <li className="flex gap-2 items-center"><span className="text-green-600">✔</span> Acesso Vitalício</li>
+                  <li className="flex gap-2 items-center"><span className="text-green-600">✔</span> Coleção de receitas organizadas por necessidade</li>
+               </ul>
+            </div>
+
+            {/* Price */}
+            <div className="text-center mb-6">
+               <div className="flex items-center justify-center gap-3">
+                  <span className="text-gray-400 line-through text-sm">De R$ 34,90</span>
+                  <span className="text-2xl font-bold text-[#2E5C38]">Por R$ 24,90</span>
+               </div>
+               <p className="text-xs text-gray-400 mt-1 italic">
+                 Upgrade disponível somente neste momento.
+               </p>
+            </div>
+
+            {/* Buttons */}
+            <div className="space-y-3">
+              <button 
+                onClick={handleAcceptUpsell}
+                className="w-full bg-[#2E5C38] hover:bg-[#1f3f26] text-white py-3.5 rounded-lg font-bold shadow-md transition-all"
+              >
+                Sim, quero o acesso completo por R$ 24,90
+              </button>
+              <button 
+                onClick={handleDeclineUpsell}
+                className="w-full text-gray-400 hover:text-gray-600 text-sm underline decoration-gray-300 transition-colors"
+              >
+                Não, quero continuar com o plano essencial de R$ 10,90
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
     </section>
   );
 };
